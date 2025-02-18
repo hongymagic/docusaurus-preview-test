@@ -44,6 +44,8 @@ jobs:
           pnpm install --frozen-lockfile
 
       - name: Build website
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           cd docs
           pnpm build
@@ -59,9 +61,12 @@ jobs:
           path: 'docs/build'
 
       - name: Deploy to GitHub Pages (main branch)
-        if: github.ref == 'refs/heads/main'
         id: deployment
-        uses: actions/deploy-pages@v4
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build
 
       - name: Deploy PR Preview
         if: github.event_name == 'pull_request'
