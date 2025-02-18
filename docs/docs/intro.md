@@ -6,6 +6,15 @@ sidebar_position: 1
 
 This file was modified to test PR Previews for GH Pages.
 
+## GitHub Pages Setup Requirements
+
+For PR Preview deployments to work correctly, you need to configure your repository's GitHub Pages settings:
+
+1. Set the **Source** to "Deploy from a branch"
+2. Create an environment named `gh-pages` and configure it to allow deployments from:
+   - The `gh-pages` branch (for main deployments)
+   - PR deployment branches (for preview deployments)
+
 Let's discover **Docusaurus in less than 5 minutes**.
 
 ## Getting Started

@@ -39,3 +39,12 @@ $ GIT_USER=<Your GitHub username> pnpm deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+## GitHub Pages Setup Requirements
+
+For PR Preview deployments to work correctly, you need to configure your repository's GitHub Pages settings:
+
+1. Set the **Source** to "Deploy from a branch"
+2. Create an environment named `gh-pages` and configure it to allow deployments from:
+   - The `gh-pages` branch (for main deployments)
+   - PR deployment branches (for preview deployments)
