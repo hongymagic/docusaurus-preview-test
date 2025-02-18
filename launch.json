@@ -1,0 +1,68 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python Debugger: Starsaber",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["main:app", "--reload"],
+      "jinja": true,
+      "cwd": "${workspaceFolder}/activity-ai/starsaber/rpa-planner/src"
+    },
+    {
+      "name": "Debug Activity-AI: Optimus",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm run dev | pnpm pino-pretty",
+      "cwd": "${workspaceFolder}/activity-ai/optimus"
+    },
+    {
+      "name": "Debug Docker: Optimus",
+      "type": "node",
+      "request": "attach",
+      "port": 9230,
+      "localRoot": "${workspaceFolder}/activity-ai/optimus",
+      "remoteRoot": "/usr/src/app/activity-ai/optimus",
+      "restart": true,
+      "sourceMaps": true,
+      "autoAttachChildProcesses": false
+    },
+    {
+      "name": "Debug Activity-AI: Jazz - edge",
+      "request": "launch",
+      "type": "msedge",
+      "url": "http://localhost:3004/",
+      "webRoot": "${workspaceFolder}/activity-ai/jazz",
+      "preLaunchTask": "npm: dev - activity-ai/jazz",
+      "runtimeArgs": ["--load-extension=${workspaceFolder}/activity-ai/jazz/dist"]
+    },
+    {
+      "name": "Debug Activity-AI: Jazz - chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:3004/",
+      "webRoot": "${workspaceFolder}/activity-ai/jazz",
+      "preLaunchTask": "npm: dev - activity-ai/jazz",
+      "runtimeArgs": ["--load-extension=${workspaceFolder}/activity-ai/jazz/dist"]
+    },
+    {
+      "name": "Debug Spaceport",
+      "type": "node",
+      "request": "attach",
+      "port": 9230,
+      "address": "localhost",
+      "restart": false,
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack://_N_E/*": "${webRoot}/conversation-manager/spaceport/*"
+      },
+      "outFiles": [
+        "${workspaceFolder}/conversation-manager/spaceport/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ],
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/conversation-manager/spaceport"
+    }
+  ]
+}

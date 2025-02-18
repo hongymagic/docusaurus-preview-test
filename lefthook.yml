@@ -1,0 +1,14 @@
+# Format, lint and apply safe code fixes before committing
+pre-commit:
+  parallel: true
+  commands:
+    # Runs formatter, linter and import sorting to the staged files
+    "check code":
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: pnpm run check {staged_files} && git update-index --again
+
+# Validate commit messages
+#commit-msg:
+#  commands:
+#    "lint commit message":
+#      run: pnpm commitlint --edit {1}

@@ -1,0 +1,60 @@
+# dependencies
+node_modules
+
+# sst
+bin
+.sst
+.build
+cdk.context.json
+
+# opennext
+.open-next
+
+# misc
+.DS_Store
+
+# local env files
+.env
+.env*.local
+.env.eval
+
+# file containing current AWS_PROFILE to use
+.awsrc
+
+# generated pem files
+*.pem
+
+
+# next.js
+.next
+dist
+out
+
+# parcel
+.parcel-cache
+
+# python ignores
+*.pyc
+
+# venv
+.venv
+
+# tsc
+**/tsconfig.tsbuildinfo
+
+
+# playwright files
+
+**/test-results/
+**/playwright-report/
+**/blob-report/
+**/playwright/.cache/
+**/ui-test-report/
+**/test-traces/
+
+# coverage
+**/coverage/
+
+# docker-compose
+.docker
+volume/cache/**

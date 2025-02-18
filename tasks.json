@@ -1,0 +1,173 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "activity-ai: 1 install Optimus dependencies",
+      "type": "shell",
+      "command": "cd activity-ai/optimus && pnpm i && pnpm run docker:db",
+      "problemMatcher": [
+        {
+          "owner": "custom",
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "Starting PostgreSQL",
+            "endsPattern": "database system is ready to accept connections"
+          }
+        }
+      ],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "activity-ai: 2 setup Optimus DB",
+      "type": "shell",
+      "command": "cd activity-ai/optimus && pnpm run db:generate && pnpm db:migrate && pnpm run db:seed && pnpm run studio",
+      "problemMatcher": [
+        {
+          "owner": "custom",
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "Running optimus migrations...",
+            "endsPattern": "Drizzle Studio is up and running on https://local.drizzle.studio"
+          }
+        }
+      ],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "activity-ai: 3 setup local OIDC provider",
+      "type": "shell",
+      "command": "cd activity-ai/oidc-provider && pnpm i && pnpm run dev",
+      "problemMatcher": [
+        {
+          "owner": "custom",
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "starting `pnpm run start dev`",
+            "endsPattern": "server running @ http://localhost:4200/.well-known/openid-configuration"
+          }
+        }
+      ],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "activity-ai: 4 start Optimus server",
+      "type": "shell",
+      "command": "cd activity-ai/optimus && pnpm run dev",
+      "problemMatcher": [
+        {
+          "owner": "custom",
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "Starting...",
+            "endsPattern": "GET /favicon.ico 200 in"
+          }
+        }
+      ],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "activity-ai: 5 install Jazz dependencies and run",
+      "type": "shell",
+      "command": "cd activity-ai/jazz && pnpm i && pnpm run dev",
+      "problemMatcher": [
+        {
+          "owner": "custom",
+          "pattern": [
+            {
+              "regexp": ".",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "VITE v",
+            "endsPattern": "Local:   http://localhost:5001/"
+          }
+        }
+      ],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "activity-ai: 6 start planner",
+      "type": "shell",
+      "command": "cd activity-ai/starsaber/rpa-planner && make docker",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "activity-ai: run all",
+      "dependsOn": [
+        "activity-ai: 1 install Optimus dependencies",
+        "activity-ai: 2 setup Optimus DB",
+        "activity-ai: 3 setup local OIDC provider",
+        "activity-ai: 4 start Optimus server",
+        "activity-ai: 5 install Jazz dependencies and run",
+        "activity-ai: 6 start planner"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": [],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

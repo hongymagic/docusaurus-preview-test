@@ -1,0 +1,20 @@
+# Project Guidelines
+
+## Documentation Requirements
+
+- Update relevant documentation in /docs (a docusaurus project) when modifying features
+- Keep README.md in sync with new capabilities
+- Maintain changelog entries in CHANGELOG.md
+
+## Code Style & Patterns
+
+- Prefer composition over inheritance
+- Use repository pattern for data access
+- Make sure TypeScript code follows "strict" rules
+- Code formatting and linting must follow biome rules
+
+## Testing Standards
+
+- Unit tests required for business logic
+- Integration tests for API endpoints
+- E2E tests for critical user flows
