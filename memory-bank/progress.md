@@ -37,11 +37,11 @@
    - ⏳ Custom theme implementation
 
 3. Infrastructure
-   - ⏳ CI/CD pipeline
+   - ✅ PR Preview deployments
    - ⏳ Automated testing
    - ⏳ Performance optimization
-   - ⏳ Deployment automation
    - ⏳ Documentation generation
+   - ⏳ Additional CI/CD features
 
 ## Current Status
 1. Documentation
@@ -61,6 +61,8 @@
    - Local development functional
    - Code quality tools active
    - Version control initialized
+   - PR preview deployments configured
+   - Dynamic baseUrl handling implemented
 
 ## Known Issues
 1. Documentation

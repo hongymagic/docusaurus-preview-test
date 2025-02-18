@@ -13,6 +13,7 @@ The project is in its initial setup phase with the following areas of focus:
 - Setup of workspace structure with PNPM
 - Implementation of basic documentation structure
 - Creation of tutorial and blog sections
+- Implementation of PR preview deployments with dynamic baseUrl
 
 ## Next Steps
 1. Documentation Enhancement
@@ -87,5 +88,7 @@ The project is in its initial setup phase with the following areas of focus:
 3. Infrastructure
    - Build process optimization
    - Deployment strategy
+     - Main branch deploys to root path
+     - PR previews deploy to /prXXX/ subdirectories
    - CI/CD implementation
    - Documentation automation

@@ -102,8 +102,26 @@ The documentation system follows a component-based architecture using Docusaurus
    - MDX processing
    - Asset optimization
    - Static site generation
+   - Dynamic baseUrl configuration
+     ```mermaid
+     flowchart TD
+         Build[Build Process] --> Check{PR Build?}
+         Check -->|Yes| PRConfig[Set baseUrl: /prXXX/]
+         Check -->|No| MainConfig[Set baseUrl: /]
+         PRConfig --> Deploy[Deploy]
+         MainConfig --> Deploy
+     ```
 
-2. Version Control
+2. Deployment Strategy
+   - Main Branch
+     - Deploys to root path (/)
+     - Full GitHub Pages setup
+   - Pull Requests
+     - Deploys to /prXXX/ subdirectory
+     - Preview environment
+     - Dynamic baseUrl configuration
+
+3. Version Control
    - Feature branches
    - Documentation versioning
    - Release management
