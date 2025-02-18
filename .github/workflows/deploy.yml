@@ -12,6 +12,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  pull-requests: write
 
 concurrency:
   group: "pages"
@@ -20,6 +21,8 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      CNAME: docusaurus-preview-test.hon.gy
     environment:
       name: github-pages
       url: ${{ github.ref == 'refs/heads/main' && steps.deployment.outputs.page_url || format('https://{0}.github.io/{1}/pr{2}', github.repository_owner, github.event.repository.name, github.event.pull_request.number) }}
@@ -68,7 +71,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/build
           keep_files: true
-          cname: docusaurus-preview-test.hon.gy
+          cname: ${{ env.CNAME }}
 
       - name: Deploy PR Preview
         if: github.event_name == 'pull_request'
@@ -78,4 +81,15 @@ jobs:
           publish_dir: ./docs/build
           destination_dir: pr${{ github.event.pull_request.number }}
           keep_files: true
-          cname: docusaurus-preview-test.hon.gy
+          cname: ${{ env.CNAME }}
+
+      - name: Update PR Comment
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |
+            📝 Documentation preview is ready!
+
+            You can view the preview at: https://${{ env.CNAME }}/pr${{ github.event.pull_request.number }}/
+
+            Note the original documentation is still available at: https://${{ env.CNAME }}/
