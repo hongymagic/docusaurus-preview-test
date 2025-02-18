@@ -13,7 +13,7 @@ const config: Config = {
   url: "https://docusaurus-preview-test.hon.gy",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/",
+  baseUrl: process.env.PR_NUMBER ? `/pr${process.env.PR_NUMBER}/` : "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
